@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import UserLayout from './Components/Layouts/UserLayout/UserLayout';
+import AdminLayout from './Components/Layouts/AdminLayout/AdminLayout';
+import About from './Components/Pages/UserPages/About/About';
+import Home from './Components/Pages/UserPages/Home/Home';
+
+import AdminHome from './Components/Pages/AdminPages/Home/AdminHome';
+import ListProduct from './Components/Pages/AdminPages/Product/ListProduct';
+import AddProduct from './Components/Pages/AdminPages/Product/AddProduct';
+import EditProduct from './Components/Pages/AdminPages/Product/EditProduct';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<UserLayout page={<Home />} />} />
+
+      <Route path='/about' element={<UserLayout page={<About />} />} />
+
+      <Route path='/admin' element={<AdminLayout child={<AdminHome />} />} />
+
+      <Route path='/admin/product' element={<AdminLayout child={<ListProduct />} />} />
+      <Route path='/admin/product/create' element={<AdminLayout child={<AddProduct />} />} />
+      <Route path='/admin/product/edit/:id' element={<AdminLayout child={<EditProduct />} />} />
+    </Routes>
   );
 }
 
